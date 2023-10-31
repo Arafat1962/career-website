@@ -73,5 +73,5 @@ Fork the repository.
 
 
 ## License
-This project is licensed under the [MIT License](license.md).
+This project is licensed under the [MIT License](LICENSE).
 
