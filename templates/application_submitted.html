@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Application Submission</title>
+    {% include 'bootsrap.html' %}
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container">
+      <h1 class="text-center mt-2 mb-4">Arafat Career</h1>
+
+      <p class="text-center">
+        Your application for the role of <b>{{job['title']}}</b> at Arafat
+        Career of has been submitted
+      </p>
+
+      <b>Full Name</b>
+      <div class="mb-2">{{application['full_name']}}</div>
+
+      <b>Email</b>
+      <div class="mb-2">{{application['email']}}</div>
+
+      <b>Linkedin</b>
+      <div class="mb-2">{{application['linkedin']}}</div>
+
+      {% if application['experience'] %}
+      <b>Work Experience</b>
+      <div class="mb-2">{{application['experience']}}</div>
+      {% endif %}
+
+      <b>Education</b>
+      <div class="mb-2">{{application['education']}}</div>
+    </div>
+  </body>
+</html>

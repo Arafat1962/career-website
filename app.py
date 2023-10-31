@@ -1,0 +1,45 @@
+from flask import Flask, render_template, jsonify, request
+from databases import fetch_record, load_job_from_db, add_application_to_db
+
+app = Flask(__name__)
+
+
+def load_jobs_from_db():
+    jobs = fetch_record()
+
+    if jobs is not None:
+        return jobs
+
+@app.route('/')
+def hello_world():
+    JOBS = load_jobs_from_db()
+    return render_template('home.html', jobs = JOBS, company_name='Arafat')
+
+
+@app.route('/api/jobs')
+def list_jobs():
+    JOBS = load_jobs_from_db()
+    return jsonify(JOBS)
+
+@app.route("/job/<id>")
+def show_job(id):
+    job = load_job_from_db(id)
+    if not job:
+        return "Not Found", 404
+    return render_template('jobpage.html', job= job, company_name='Arafat Career')
+
+@app.route('/job/<id>/apply', methods=['post'])
+def apply_to_job(id):
+    data = request.form
+    job = load_job_from_db(id)
+    add_application_to_db(id, data)
+    return render_template('application_submitted.html',
+                           application=data, job=job)
+
+@app.route('/api/job/<id>')
+def show_job_json(id):
+    job = load_job_from_db(id)
+    return jsonify(job)
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <meta>
+    <title>Career Website</title>
+    <link rel="stylesheet" href="" />
+    
+    {% include 'bootsrap.html' %}
+    <style>
+        #banner-img{
+            height: 360px;
+            width: 100%;
+            object-fit: cover;
+            padding-bottom: 20px;
+        }
+    
+    </style>
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container">
+      <h1 class="text-center mt-2 mb-4">Career with {{company_name}}</h1>
+      <img class="img-fluid" id="banner-img" src="static/banner.jpg" />
+      <h2 class="text-center mt-2 mb-4">About Arafat</h2>
+      <div class="row">
+        <div class="col-md-8">
+      <p class="lead">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </div>
+    <div class="d-none d-md-block col-md-4">
+      <img src="static\people-working.jpg"
+      style="height: 250px; border-radius: 280px;
+      object-fit: cover;">
+    </div>
+    </div>
+      <h2 class="text-center mt-2 mb-4">Open Positions</h2>
+      <p>
+        {% for job in jobs%}
+        {% include 'jobitem.html' %}
+        {% endfor %}
+      </p>
+      <div style="text-align: center">
+        <button class="btn mb-4 btn-lg btn-outline-primary">Contacts</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{job.title}} - Arafat Career</title>
+    {% include 'bootsrap.html'%}
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+
+    <div class="container">
+      <h1 class="text-center mt-2 mb-4">Arafat Careers</h1>
+      <h3 class="mb-2">{{job.title}}</h3>
+      <p class="lead mt-0">{{job.location}}</p>
+      <h3>Salary</h3>
+      <p>{{job.currency}}. {{job.salary}}</p>
+      <h4>Responsibility</h4>
+      <ul>
+        {% for line in job.responsibility.split('.') %} {% if not loop.last %}
+        <li>{{ line }}.</li>
+        {% else %} {{ line }} {% endif %} {% endfor %}
+      </ul>
+      <h3>Requirements</h3>
+      <ol>
+        {% for line in job.requirements.split('#') %}
+        <li>{{line}}</li>
+        {% endfor %}
+      </ol>
+    </div>
+    <div>{% include 'application.html' %}</div>
+  </body>
+</html>
